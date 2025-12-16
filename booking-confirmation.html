@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation - Sea Glass Heaven</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2A5360',
+                        secondary: '#04757B',
+                        accent: '#53ABA9',
+                        bgcustom: '#EADBD4',
+                    },
+                    fontFamily: {
+                        'heading': ['Poppins', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="font-body bg-bgcustom text-gray-800">
+    <custom-navbar></custom-navbar>
+    <chat-bot-icon></chat-bot-icon>
+
+    <!-- Header -->
+    <div class="bg-primary text-white py-8 mb-8">
+        <div class="container mx-auto px-4">
+            <h1 class="font-heading text-3xl md:text-4xl font-bold mb-2">Complete Your Booking</h1>
+            <p class="text-lg">You're just a few steps away from your seaside escape</p>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 mb-20">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Main Form -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Guest Information -->
+                <div class="bg-white rounded-2xl custom-shadow p-8">
+                    <h2 class="font-heading text-xl font-bold text-primary mb-6 flex items-center gap-2">
+                        <span class="w-8 h-8 bg-accent text-white rounded-full flex items-center justify-center text-sm">1</span>
+                        Guest Information
+                    </h2>
+                    <form id="guestForm" class="space-y-5">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">First Name *</label>
+                                <input type="text" class="input-field" required placeholder="John">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Last Name *</label>
+                                <input type="text" class="input-field" required placeholder="Doe">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
+                                <input type="email" class="input-field" required placeholder="john@example.com">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number *</label>
+                                <input type="tel" class="input-field" required placeholder="+1 (555) 123-4567">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Country/Region *</label>
+                            <select class="input-field" required>
+                                <option value="">Select your country</option>
+                                <option value="US" selected>United States</option>
+                                <option value="CA">Canada</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="AU">Australia</option>
+                                <option value="DE">Germany</option>
+                                <option value="FR">France</option>
+                                <option value="JP">Japan</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Special Requests</label>
+                            <textarea class="input-field" rows="3" placeholder="Any special requests? (e.g., high floor, quiet room, dietary requirements)"></textarea>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Payment Information -->
+                <div class="bg-white rounded-2xl custom-shadow p-8">
+                    <h2 class="font-heading text-xl font-bold text-primary mb-6 flex items-center gap-2">
+                        <span class="w-8 h-8 bg-accent text-white rounded-full flex items-center justify-center text-sm">2</span>
+                        Payment Information
+                    </h2>
+                    
+                    <!-- Payment Methods -->
+                    <div class="flex gap-4 mb-6">
+                        <label class="flex-1 cursor-pointer">
+                            <input type="radio" name="payment" value="card" class="sr-only peer" checked>
+                            <div class="p-4 border-2 border-gray-200 rounded-xl peer-checked:border-accent peer-checked:bg-accent/5 transition">
+                                <div class="flex items-center gap-2">
+                                    <i data-feather="credit-card" class="w-5 h-5 text-accent"></i>
+                                    <span class="font-medium">Credit Card</span>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="flex-1 cursor-pointer">
+                            <input type="radio" name="payment" value="paypal" class="sr-only peer">
+                            <div class="p-4 border-2 border-gray-200 rounded-xl peer-checked:border-accent peer-checked:bg-accent/5 transition">
+                                <div class="flex items-center gap-2">
+                                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="#003087"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944 3.72a.775.775 0 0 1 .765-.651h6.496c2.875 0 4.937 1.917 4.465 4.935-.471 3.018-3.067 4.935-5.942 4.935H7.89l-.814 8.398z"/><path d="M19.56 7.2c-.471 3.018-3.067 4.936-5.942 4.936h-1.654l-1.033 8.398h3.606a.641.641 0 0 0 .633-.74l.782-6.383c.053-.436.419-.756.863-.756h.55c2.875 0 4.937-1.918 4.465-4.936-.217-1.393-.86-2.519-1.27-2.519z" fill="#0070ba"/></svg>
+                                    <span class="font-medium">PayPal</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div id="cardForm" class="space-y-5">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Name on Card *</label>
+                            <input type="text" class="input-field" required placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Card Number *</label>
+                            <div class="relative">
+                                <input type="text" class="input-field pl-10" required placeholder="1234 5678 9012 3456" maxlength="19">
+                                <i data-feather="credit-card" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Expiry Date *</label>
+                                <input type="text" class="input-field" required placeholder="MM/YY" maxlength="5">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">CVV *</label>
+                                <input type="text" class="input-field" required placeholder="123" maxlength="4">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 p-4 bg-bgcustom rounded-xl">
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" class="mt-1 rounded border-gray-300 text-accent focus:ring-accent">
+                            <span class="text-sm text-gray-600">Save card for future bookings (your information is encrypted and secure)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Terms and Conditions -->
+                <div class="bg-white rounded-2xl custom-shadow p-8">
+                    <h2 class="font-heading text-xl font-bold text-primary mb-6 flex items-center gap-2">
+                        <span class="w-8 h-8 bg-accent text-white rounded-full flex items-center justify-center text-sm">3</span>
+                        Terms & Conditions
+                    </h2>
+                    <div class="space-y-4">
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" class="mt-1 rounded border-gray-300 text-accent focus:ring-accent" required id="termsCheck">
+                            <span class="text-sm text-gray-600">I have read and agree to the <a href="#" class="text-secondary hover:underline">Terms of Service</a>, <a href="#" class="text-secondary hover:underline">Cancellation Policy</a>, and <a href="#" class="text-secondary hover:underline">Privacy Policy</a>. *</span>
+                        </label>
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" class="mt-1 rounded border-gray-300 text-accent focus:ring-accent">
+                            <span class="text-sm text-gray-600">I would like to receive promotional emails about special offers and events from Sea Glass Heaven.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Submit Button (Mobile) -->
+                <div class="lg:hidden">
+                    <button type="submit" id="mobileSubmitBtn" class="btn-accent w-full py-4 text-lg flex items-center justify-center gap-2">
+                        <i data-feather="lock" class="w-5 h-5"></i>
+                        Confirm & Pay
+                    </button>
+                </div>
+            </div>
+
+            <!-- Booking Summary Sidebar -->
+            <div class="space-y-6">
+                <div class="bg-white rounded-2xl custom-shadow p-6 sticky top-24">
+                    <h3 class="font-heading text-lg font-bold text-primary mb-4">Booking Summary</h3>
+                    
+                    <!-- Room Preview -->
+                    <div class="flex gap-4 mb-6 pb-6 border-b border-gray-200">
+                        <img id="roomImage" src="https://enzostvs-cached-generation.hf.space/generate/luxury-beachfront-suite-with-ocean-view-and-balcony?format=square" 
+                             alt="Room" class="w-24 h-24 object-cover rounded-xl">
+                        <div>
+                            <h4 id="roomName" class="font-semibold text-primary">Ocean Breeze Suite</h4>
+                            <p class="text-sm text-gray-500">Ocean View • King Bed</p>
+                            <div class="flex items-center gap-1 mt-2">
+                                <i data-feather="star" class="w-4 h-4 text-yellow-400 fill-current"></i>
+                                <span class="text-sm font-medium">4.9</span>
+                                <span class="text-sm text-gray-500">(124 reviews)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dates -->
+                    <div class="space-y-3 mb-6 pb-6 border-b border-gray-200">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Check-in</span>
+                            <span id="checkinDisplay" class="font-medium">Dec 20, 2024</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Check-out</span>
+                            <span id="checkoutDisplay" class="font-medium">Dec 22, 2024</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Guests</span>
+                            <span id="guestsDisplay" class="font-medium">2 Adults</span>
+                        </div>
+                    </div>
+
+                    <!-- Price Breakdown -->
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">$<span id="pricePerNight">325</span> x <span id="nightsCount">2</span> nights</span>
+                            <span id="subtotal">$650</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Cleaning fee</span>
+                            <span>$35</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Service fee</span>
+                            <span id="serviceFee">$45</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Taxes</span>
+                            <span id="taxes">$65</span>
+                        </div>
+                    </div>
+
+                    <!-- Promo Code -->
+                    <div class="mb-6 pb-6 border-b border-gray-200">
+                        <div class="flex gap-2">
+                            <input type="text" class="input-field flex-grow" placeholder="Promo code">
+                            <button class="btn-primary">Apply</button>
+                        </div>
+                    </div>
+
+                    <!-- Total -->
+                    <div class="flex justify-between items-center text-xl font-bold mb-6">
+                        <span>Total</span>
+                        <span class="text-accent" id="total">$795</span>
+                    </div>
+
+                    <!-- Submit Button (Desktop) -->
+                    <button type="submit" id="submitBtn" class="hidden lg:flex btn-accent w-full py-4 text-lg items-center justify-center gap-2">
+                        <i data-feather="lock" class="w-5 h-5"></i>
+                        Confirm & Pay
+                    </button>
+
+                    <!-- Security Badges -->
+                    <div class="mt-6 flex items-center justify-center gap-4 text-sm text-gray-500">
+                        <div class="flex items-center gap-1">
+                            <i data-feather="shield" class="w-4 h-4"></i>
+                            <span>Secure</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <i data-feather="lock" class="w-4 h-4"></i>
+                            <span>Encrypted</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-2xl p-8 max-w-md mx-4 text-center">
+            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i data-feather="check-circle" class="text-green-500 w-10 h-10"></i>
+            </div>
+            <h2 class="font-heading text-2xl font-bold text-primary mb-2">Booking Confirmed!</h2>
+            <p class="text-gray-600 mb-4">Your reservation has been successfully processed.</p>
+            <p class="text-sm text-gray-500 mb-6">Confirmation #: <span class="font-bold text-primary" id="confirmationNumber">SGH-2024-XXXXX</span></p>
+            <p class="text-sm text-gray-500 mb-6">A confirmation email has been sent to your email address.</p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="dashboard.html" class="btn-accent flex-1">Go to Dashboard</a>
+                <a href="checkin.html" class="btn-primary flex-1">Online Check-In</a>
+            </div>
+        </div>
+    </div>
+
+    <custom-footer></custom-footer>
+
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="components/chatbot-icon.js"></script>
+    <script src="script.js"></script>
+    <script>
+        feather.replace();
+
+        // Room data
+        const rooms = {
+            1: { name: "Ocean Breeze Suite", price: 325, image: "https://enzostvs-cached-generation.hf.space/generate/luxury-beachfront-suite-with-ocean-view-and-balcony?format=square" },
+            2: { name: "Seaglass Premium Room", price: 245, image: "https://enzostvs-cached-generation.hf.space/generate/coastal-modern-hotel-room-with-sea-decor?format=square" },
+            3: { name: "Sunset Vista Penthouse", price: 550, image: "https://enzostvs-cached-generation.hf.space/generate/luxury-penthouse-with-ocean-view-at-sunset?format=square" },
+            4: { name: "Coastal Family Suite", price: 420, image: "https://enzostvs-cached-generation.hf.space/generate/family-friendly-beach-hotel-suite-with-two-rooms?format=square" },
+            5: { name: "Beachfront Bungalow", price: 380, image: "https://enzostvs-cached-generation.hf.space/generate/beach-bungalow-with-ocean-access-and-coastal-decor?format=square" },
+            6: { name: "Executive Business Room", price: 295, image: "https://enzostvs-cached-generation.hf.space/generate/modern-executive-business-hotel-room-with-workstation?format=square" }
+        };
+
+        // Get booking details from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const roomId = urlParams.get('room') || 1;
+        const checkin = urlParams.get('checkin') || new Date().toISOString().split('T')[0];
+        const checkout = urlParams.get('checkout') || new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+        const guests = urlParams.get('guests') || 2;
+
+        const room = rooms[roomId] || rooms[1];
+
+        // Update page content
+        document.getElementById('roomName').textContent = room.name;
+        document.getElementById('roomImage').src = room.image;
+        document.getElementById('pricePerNight').textContent = room.price;
+
+        // Format dates
+        const formatDate = (dateStr) => {
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        };
+
+        document.getElementById('checkinDisplay').textContent = formatDate(checkin);
+        document.getElementById('checkoutDisplay').textContent = formatDate(checkout);
+        document.getElementById('guestsDisplay').textContent = guests + ' Guest' + (guests > 1 ? 's' : '');
+
+        // Calculate prices
+        const checkinDate = new Date(checkin);
+        const checkoutDate = new Date(checkout);
+        const nights = Math.max(1, Math.ceil((checkoutDate - checkinDate) / (1000 * 60 * 60 * 24)));
+        
+        const subtotal = room.price * nights;
+        const cleaningFee = 35;
+        const serviceFee = Math.round(subtotal * 0.07);
+        const taxes = Math.round(subtotal * 0.1);
+        const total = subtotal + cleaningFee + serviceFee + taxes;
+
+        document.getElementById('nightsCount').textContent = nights;
+        document.getElementById('subtotal').textContent = '$' + subtotal;
+        document.getElementById('serviceFee').textContent = '$' + serviceFee;
+        document.getElementById('taxes').textContent = '$' + taxes;
+        document.getElementById('total').textContent = '$' + total;
+
+        // Generate confirmation number
+        function generateConfirmationNumber() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+            let result = 'SGH-2024-';
+            for (let i = 0; i < 5; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+
+        // Handle form submission
+        function submitBooking() {
+            const termsChecked = document.getElementById('termsCheck').checked;
+            if (!termsChecked) {
+                alert('Please accept the terms and conditions to proceed.');
+                return;
+            }
+
+            // Generate and show confirmation
+            document.getElementById('confirmationNumber').textContent = generateConfirmationNumber();
+            document.getElementById('successModal').classList.remove('hidden');
+        }
+
+        document.getElementById('submitBtn').addEventListener('click', submitBooking);
+        document.getElementById('mobileSubmitBtn').addEventListener('click', submitBooking);
+
+        // Close modal on background click
+        document.getElementById('successModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

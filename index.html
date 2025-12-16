@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sea Glass Heaven</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2A5360',
+                        secondary: '#04757B',
+                        accent: '#53ABA9',
+                        bgcustom: '#EADBD4',
+                    },
+                    fontFamily: {
+                        'heading': ['Poppins', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="font-body bg-bgcustom text-gray-800">
+    <custom-navbar></custom-navbar>
+    <chat-bot-icon></chat-bot-icon>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden rounded-b-3xl shadow-lg mb-16">
+        <div class="absolute inset-0 bg-gradient-to-r from-primary/90 to-secondary/80 z-10"></div>
+        <img src="https://enzostvs-cached-generation.hf.space/generate/luxury-beach-hotel-by-the-sea-at-sunset?format=landscape-16_9"
+             alt="Sea Glass Heaven Beach View" class="w-full h-[85vh] object-cover">
+        <div class="absolute inset-0 z-20 flex flex-col justify-center items-center px-4 text-white">
+            <h1 class="font-heading text-4xl md:text-6xl lg:text-7xl font-bold mb-4 text-center">Sea Glass Heaven</h1>
+            <p class="text-xl md:text-2xl mb-8 text-center max-w-3xl font-light">Discover serenity by the shore. Your digital key to a seamless, peaceful stay.</p>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <a href="booking.html" class="bg-accent hover:bg-secondary text-white font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:-translate-y-1">Book a Room</a>
+                <a href="checkin.html" class="bg-white text-primary hover:bg-gray-100 font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:-translate-y-1">Online Check-In</a>
+                <a href="login.html" class="border-2 border-white text-white hover:bg-white/20 font-semibold py-3 px-8 rounded-full transition duration-300">Guest Login</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="container mx-auto px-4 mb-20">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-center text-primary mb-12">Your Digital Concierge</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+                <div class="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-feather="home" class="text-accent w-8 h-8"></i>
+                </div>
+                <h3 class="font-heading text-xl font-semibold text-primary mb-2">Smart Room Booking</h3>
+                <p class="text-gray-600">Browse, select, and secure your perfect ocean-view suite in moments.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+                <div class="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-feather="coffee" class="text-accent w-8 h-8"></i>
+                </div>
+                <h3 class="font-heading text-xl font-semibold text-primary mb-2">Restaurant Reservations</h3>
+                <p class="text-gray-600">Book your table at our award-winning seaside restaurant.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+                <div class="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-feather="check-circle" class="text-accent w-8 h-8"></i>
+                </div>
+                <h3 class="font-heading text-xl font-semibold text-primary mb-2">Frictionless Check-In/Out</h3>
+                <p class="text-gray-600">Skip the front desk. Complete your arrival and departure digitally.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+                <div class="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-feather="message-circle" class="text-accent w-8 h-8"></i>
+                </div>
+                <h3 class="font-heading text-xl font-semibold text-primary mb-2">AI Assistant</h3>
+                <p class="text-gray-600">Get instant answers to your questions, anytime, from any page.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-primary text-white py-16 mb-20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6">Your Seaside Sanctuary Awaits</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Experience the ultimate blend of coastal tranquility and modern convenience.</p>
+            <a href="register.html" class="inline-block bg-accent hover:bg-secondary text-white font-semibold py-3 px-10 rounded-full shadow-lg transition duration-300 transform hover:scale-105">Create Your Account</a>
+        </div>
+    </section>
+
+    <custom-footer></custom-footer>
+
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="components/chatbot-icon.js"></script>
+    <script src="script.js"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>

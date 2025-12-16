@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Stay - Sea Glass Heaven</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2A5360',
+                        secondary: '#04757B',
+                        accent: '#53ABA9',
+                        bgcustom: '#EADBD4',
+                    },
+                    fontFamily: {
+                        'heading': ['Poppins', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="font-body bg-bgcustom text-gray-800">
+    <custom-navbar></custom-navbar>
+    <chat-bot-icon></chat-bot-icon>
+
+    <!-- Header -->
+    <div class="bg-primary text-white py-8 mb-8">
+        <div class="container mx-auto px-4">
+            <h1 class="font-heading text-3xl md:text-4xl font-bold mb-2">Find Your Perfect Suite</h1>
+            <p class="text-lg">Select from our curated collection of ocean-view accommodations</p>
+        </div>
+    </div>
+
+    <!-- Date Selector -->
+    <div class="container mx-auto px-4 mb-12">
+        <div class="bg-white rounded-2xl custom-shadow p-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Check-in Date</label>
+                    <input type="date" class="input-field">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Check-out Date</label>
+                    <input type="date" class="input-field">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Guests</label>
+                    <select class="input-field">
+                        <option>1 Guest</option>
+                        <option>2 Guests</option>
+                        <option>3 Guests</option>
+                        <option>4+ Guests</option>
+                    </select>
+                </div>
+                <div class="flex items-end">
+                    <button class="btn-accent w-full">Search Availability</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rooms Grid -->
+    <div class="container mx-auto px-4 mb-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="roomsContainer">
+            <!-- Room cards will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <custom-footer></custom-footer>
+
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="components/chatbot-icon.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Sample room data - in production, this would come from an API
+        const rooms = [
+            {
+                id: 1,
+                name: "Ocean Breeze Suite",
+                description: "A spacious suite with panoramic ocean views, king-sized bed, and a private balcony.",
+                price: 325,
+                image: "https://enzostvs-cached-generation.hf.space/generate/luxury-beachfront-suite-with-ocean-view-and-balcony?format=portrait-9_16",
+                amenities: ["Ocean View", "King Bed", "Private Balcony", "Minibar", "Smart TV"],
+                availability: true
+            },
+            {
+                id: 2,
+                name: "Seaglass Premium Room",
+                description: "Modern room with sea-inspired decor, queen bed, and direct garden access.",
+                price: 245,
+                image: "https://enzostvs-cached-generation.hf.space/generate/coastal-modern-hotel-room-with-sea-decor?format=portrait-9_16",
+                amenities: ["Garden Access", "Queen Bed", "Work Desk", "Coffee Machine", "Safe"],
+                availability: true
+            },
+            {
+                id: 3,
+                name: "Sunset Vista Penthouse",
+                description: "Our premier penthouse offering 180-degree ocean views and luxury amenities.",
+                price: 550,
+                image: "https://enzostvs-cached-generation.hf.space/generate/luxury-penthouse-with-ocean-view-at-sunset?format=portrait-9_16",
+                amenities: ["Penthouse", "Two Rooms", "Kitchenette", "Jacuzzi", "Butler Service"],
+                availability: false
+            },
+            {
+                id: 4,
+                name: "Coastal Family Suite",
+                description: "Perfect for families, featuring two bedrooms and a large living area.",
+                price: 420,
+                image: "https://enzostvs-cached-generation.hf.space/generate/family-friendly-beach-hotel-suite-with-two-rooms?format=portrait-9_16",
+                amenities: ["Two Bedrooms", "Family Friendly", "Sofa Bed", "Kitchenette", "Board Games"],
+                availability: true
+            },
+            {
+                id: 5,
+                name: "Beachfront Bungalow",
+                description: "Private bungalow steps from the beach with direct sand access.",
+                price: 380,
+                image: "https://enzostvs-cached-generation.hf.space/generate/beach-bungalow-with-ocean-access-and-coastal-decor?format=portrait-9_16",
+                amenities: ["Beachfront", "Private Deck", "Outdoor Shower", "Hammock", "Fire Pit"],
+                availability: true
+            },
+            {
+                id: 6,
+                name: "Executive Business Room",
+                description: "Designed for business travelers with workspace and premium connectivity.",
+                price: 295,
+                image: "https://enzostvs-cached-generation.hf.space/generate/modern-executive-business-hotel-room-with-workstation?format=portrait-9_16",
+                amenities: ["Dedicated Workspace", "High-Speed Wi-Fi", "Printer Access", "24/7 Coffee", "Express Check-in"],
+                availability: true
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('roomsContainer');
+            
+            rooms.forEach(room => {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-2xl card-hover custom-shadow overflow-hidden';
+                card.innerHTML = `
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="${room.image}" alt="${room.name}" class="w-full h-full object-cover">
+                        ${!room.availability ? 
+                            '<div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">Unavailable</div>' : 
+                            '<div class="absolute top-4 right-4 bg-accent text-white px-3 py-1 rounded-full text-sm font-medium">Available</div>'}
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="font-heading text-xl font-semibold text-primary">${room.name}</h3>
+                            <div>
+                                <span class="text-2xl font-bold text-accent">$${room.price}</span>
+                                <span class="text-gray-500">/night</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">${room.description}</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            ${room.amenities.map(amenity => 
+                                `<span class="bg-bgcustom text-secondary text-xs px-3 py-1 rounded-full">${amenity}</span>`
+                            ).join('')}
+                        </div>
+                        <div class="flex justify-between">
+                            <a href="room-details.html?id=${room.id}" class="text-secondary hover:text-primary font-medium">View Details</a>
+                            ${room.availability ? 
+                                `<a href="booking-confirmation.html?room=${room.id}" class="btn-accent px-6">Book Now</a>` : 
+                                '<button class="btn-primary px-6 opacity-50 cursor-not-allowed" disabled>Unavailable</button>'}
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            feather.replace();
+        });
+    </script>
+</body>
+</html>

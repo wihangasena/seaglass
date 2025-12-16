@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Details - Sea Glass Heaven</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2A5360',
+                        secondary: '#04757B',
+                        accent: '#53ABA9',
+                        bgcustom: '#EADBD4',
+                    },
+                    fontFamily: {
+                        'heading': ['Poppins', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="font-body bg-bgcustom text-gray-800">
+    <custom-navbar></custom-navbar>
+    <chat-bot-icon></chat-bot-icon>
+
+    <div class="container mx-auto px-4 py-8">
+        <!-- Breadcrumb -->
+        <nav class="mb-6">
+            <ol class="flex items-center gap-2 text-sm">
+                <li><a href="index.html" class="text-secondary hover:text-primary">Home</a></li>
+                <li><i data-feather="chevron-right" class="w-4 h-4 text-gray-400"></i></li>
+                <li><a href="booking.html" class="text-secondary hover:text-primary">Rooms</a></li>
+                <li><i data-feather="chevron-right" class="w-4 h-4 text-gray-400"></i></li>
+                <li class="text-gray-500" id="breadcrumbRoomName">Ocean Breeze Suite</li>
+            </ol>
+        </nav>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Main Content -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Image Gallery -->
+                <div class="bg-white rounded-2xl custom-shadow overflow-hidden">
+                    <div class="relative">
+                        <img id="mainImage" src="https://enzostvs-cached-generation.hf.space/generate/luxury-beachfront-suite-with-ocean-view-and-balcony?format=landscape-16_9"
+                             alt="Room Main View" class="w-full h-[400px] object-cover">
+                        <span id="availabilityBadge" class="absolute top-4 right-4 bg-accent text-white px-4 py-2 rounded-full font-medium">Available</span>
+                    </div>
+                    <div class="p-4 flex gap-2 overflow-x-auto" id="thumbnailGallery">
+                        <img src="https://enzostvs-cached-generation.hf.space/generate/luxury-beachfront-suite-with-ocean-view-and-balcony?format=square" 
+                             class="w-24 h-24 object-cover rounded-lg cursor-pointer border-2 border-accent thumbnail" alt="View 1">
+                        <img src="https://enzostvs-cached-generation.hf.space/generate/luxury-hotel-bathroom-with-marble-and-ocean-view?format=square" 
+                             class="w-24 h-24 object-cover rounded-lg cursor-pointer border-2 border-transparent hover:border-accent thumbnail" alt="View 2">
+                        <img src="https://enzostvs-cached-generation.hf.space/generate/hotel-balcony-with-ocean-sunset-view?format=square" 
+                             class="w-24 h-24 object-cover rounded-lg cursor-pointer border-2 border-transparent hover:border-accent thumbnail" alt="View 3">
+                        <img src="https://enzostvs-cached-generation.hf.space/generate/luxury-hotel-room-workspace-with-ocean-view?format=square" 
+                             class="w-24 h-24 object-cover rounded-lg cursor-pointer border-2 border-transparent hover:border-accent thumbnail" alt="View 4">
+                    </div>
+                </div>
+
+                <!-- Room Description -->
+                <div class="bg-white rounded-2xl custom-shadow p-8">
+                    <h1 id="roomName" class="font-heading text-3xl font-bold text-primary mb-4">Ocean Breeze Suite</h1>
+                    <p id="roomDescription" class="text-gray-600 mb-6 leading-relaxed">
+                        Experience the ultimate in coastal luxury with our Ocean Breeze Suite. Wake up to stunning panoramic ocean views from your private balcony, where you can enjoy your morning coffee while listening to the gentle waves. This spacious suite features a plush king-sized bed with premium linens, a modern en-suite bathroom with a rain shower and deep soaking tub, and a comfortable seating area perfect for relaxation.
+                    </p>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-accent/20 rounded-full flex items-center justify-center">
+                                <i data-feather="maximize" class="text-accent w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500">Size</p>
+                                <p class="font-semibold">520 sq ft</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-accent/20 rounded-full flex items-center justify-center">
+                                <i data-feather="users" class="text-accent w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500">Capacity</p>
+                                <p class="font-semibold">2 Guests</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-accent/20 rounded-full flex items-center justify-center">
+                                <i data-feather="moon" class="text-accent w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500">Bed Type</p>
+                                <p class="font-semibold">King Bed</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-accent/20 rounded-full flex items-center justify-center">
+                                <i data-feather="eye" class="text-accent w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500">View</p>
+                                <p class="font-semibold">Ocean View</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="font-heading text-xl font-semibold text-primary mb-4">Room Amenities</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4" id="amenitiesList">
+                        <div class="flex items-center gap-2">
+                            <i data-feather="wifi" class="text-accent w-5 h-5"></i>
+                            <span>High-Speed Wi-Fi</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-feather="tv" class="text-accent w-5 h-5"></i>
+                            <span>55" Smart TV</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-feather="wind" class="text-accent w-5 h-5"></i>
+                            <span>Air Conditioning</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-feather="coffee" class="text-accent w-5 h-5"></i>
+                            <span>Coffee Machine</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-feather="box" class="text-accent w-5 h-5"></i>
+                            <span>Mini Bar</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-feather="lock" class="text-accent w-5 h-5"></i>
+                            <span>In-Room Safe</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-feather="droplet" class="text-accent w-5 h-5"></i>
+                            <span>Rain Shower</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-feather="sun" class="text-accent w-5 h-5"></i>
+                            <span>Private Balcony</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-feather="phone" class="text-accent w-5 h-5"></i>
+                            <span>24/7 Room Service</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Policies -->
+                <div class="bg-white rounded-2xl custom-shadow p-8">
+                    <h3 class="font-heading text-xl font-semibold text-primary mb-4">Room Policies</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold mb-2 flex items-center gap-2">
+                                <i data-feather="clock" class="text-accent w-5 h-5"></i>
+                                Check-in / Check-out
+                            </h4>
+                            <ul class="text-sm text-gray-600 space-y-1 ml-7">
+                                <li>Check-in: 3:00 PM</li>
+                                <li>Check-out: 11:00 AM</li>
+                                <li>Early check-in available (fee may apply)</li>
+                                <li>Late check-out upon request</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-2 flex items-center gap-2">
+                                <i data-feather="x-circle" class="text-accent w-5 h-5"></i>
+                                Cancellation Policy
+                            </h4>
+                            <ul class="text-sm text-gray-600 space-y-1 ml-7">
+                                <li>Free cancellation up to 48 hours before</li>
+                                <li>50% charge for late cancellation</li>
+                                <li>Full charge for no-show</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-2 flex items-center gap-2">
+                                <i data-feather="users" class="text-accent w-5 h-5"></i>
+                                Guest Policy
+                            </h4>
+                            <ul class="text-sm text-gray-600 space-y-1 ml-7">
+                                <li>Maximum 2 guests per room</li>
+                                <li>Children under 12 stay free</li>
+                                <li>Extra bed available upon request</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-2 flex items-center gap-2">
+                                <i data-feather="alert-circle" class="text-accent w-5 h-5"></i>
+                                Special Notes
+                            </h4>
+                            <ul class="text-sm text-gray-600 space-y-1 ml-7">
+                                <li>Non-smoking room</li>
+                                <li>Pets not allowed</li>
+                                <li>Government ID required at check-in</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking Sidebar -->
+            <div class="space-y-6">
+                <!-- Price Card -->
+                <div class="bg-white rounded-2xl custom-shadow p-6 sticky top-24">
+                    <div class="flex items-baseline gap-2 mb-6">
+                        <span id="roomPrice" class="text-4xl font-bold text-accent">$325</span>
+                        <span class="text-gray-500">/ night</span>
+                    </div>
+
+                    <form id="bookingForm" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Check-in</label>
+                            <input type="date" class="input-field" id="checkinDate" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Check-out</label>
+                            <input type="date" class="input-field" id="checkoutDate" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Guests</label>
+                            <select class="input-field" id="guests">
+                                <option value="1">1 Guest</option>
+                                <option value="2" selected>2 Guests</option>
+                            </select>
+                        </div>
+
+                        <div class="border-t border-gray-200 pt-4 space-y-2">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">$325 x <span id="nightsCount">2</span> nights</span>
+                                <span id="subtotal">$650</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">Taxes & fees</span>
+                                <span id="taxes">$65</span>
+                            </div>
+                            <div class="flex justify-between font-bold text-lg pt-2 border-t">
+                                <span>Total</span>
+                                <span class="text-accent" id="total">$715</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="bookButton" class="btn-accent w-full py-4 text-lg">
+                            Reserve Now
+                        </button>
+                    </form>
+
+                    <p class="text-center text-sm text-gray-500 mt-4">
+                        <i data-feather="shield" class="w-4 h-4 inline"></i>
+                        Free cancellation up to 48 hours before check-in
+                    </p>
+                </div>
+
+                <!-- Contact Card -->
+                <div class="bg-white rounded-2xl custom-shadow p-6">
+                    <h3 class="font-heading font-semibold text-primary mb-4">Need Assistance?</h3>
+                    <div class="space-y-3 text-sm">
+                        <a href="tel:+15551234567" class="flex items-center gap-3 text-gray-600 hover:text-accent">
+                            <i data-feather="phone" class="w-5 h-5"></i>
+                            +1 (555) 123-4567
+                        </a>
+                        <a href="mailto:reservations@seaglassheaven.com" class="flex items-center gap-3 text-gray-600 hover:text-accent">
+                            <i data-feather="mail" class="w-5 h-5"></i>
+                            reservations@seaglassheaven.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <custom-footer></custom-footer>
+
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="components/chatbot-icon.js"></script>
+    <script src="script.js"></script>
+    <script>
+        feather.replace();
+
+        // Room data
+        const rooms = {
+            1: {
+                name: "Ocean Breeze Suite",
+                description: "Experience the ultimate in coastal luxury with our Ocean Breeze Suite. Wake up to stunning panoramic ocean views from your private balcony, where you can enjoy your morning coffee while listening to the gentle waves. This spacious suite features a plush king-sized bed with premium linens, a modern en-suite bathroom with a rain shower and deep soaking tub, and a comfortable seating area perfect for relaxation.",
+                price: 325,
+                images: [
+                    "https://enzostvs-cached-generation.hf.space/generate/luxury-beachfront-suite-with-ocean-view-and-balcony?format=landscape-16_9",
+                    "https://enzostvs-cached-generation.hf.space/generate/luxury-hotel-bathroom-with-marble-and-ocean-view?format=square",
+                    "https://enzostvs-cached-generation.hf.space/generate/hotel-balcony-with-ocean-sunset-view?format=square",
+                    "https://enzostvs-cached-generation.hf.space/generate/luxury-hotel-room-workspace-with-ocean-view?format=square"
+                ],
+                available: true
+            },
+            2: {
+                name: "Seaglass Premium Room",
+                description: "Our Seaglass Premium Room offers modern comfort with sea-inspired decor. Perfect for couples or solo travelers seeking a peaceful retreat. The room features a comfortable queen bed, work desk, and direct access to our beautiful gardens. Wake up refreshed and enjoy your complimentary coffee from our in-room machine.",
+                price: 245,
+                images: [
+                    "https://enzostvs-cached-generation.hf.space/generate/coastal-modern-hotel-room-with-sea-decor?format=landscape-16_9"
+                ],
+                available: true
+            },
+            3: {
+                name: "Sunset Vista Penthouse",
+                description: "Our premier Sunset Vista Penthouse offers unparalleled luxury with 180-degree ocean views. This expansive two-bedroom penthouse features a full kitchenette, private jacuzzi on the terrace, and dedicated butler service. Perfect for special occasions or those seeking the ultimate beachside experience.",
+                price: 550,
+                images: [
+                    "https://enzostvs-cached-generation.hf.space/generate/luxury-penthouse-with-ocean-view-at-sunset?format=landscape-16_9"
+                ],
+                available: false
+            },
+            4: {
+                name: "Coastal Family Suite",
+                description: "Designed with families in mind, our Coastal Family Suite offers two bedrooms, a large living area, and plenty of space for everyone. Kids will love the board games collection, while parents can relax on the private balcony. The kitchenette allows for easy meal prep and snacks.",
+                price: 420,
+                images: [
+                    "https://enzostvs-cached-generation.hf.space/generate/family-friendly-beach-hotel-suite-with-two-rooms?format=landscape-16_9"
+                ],
+                available: true
+            },
+            5: {
+                name: "Beachfront Bungalow",
+                description: "Step directly onto the sand from your private Beachfront Bungalow. This unique accommodation offers an outdoor shower, private deck with hammock, and your own fire pit for evening gatherings. Experience the ultimate beach lifestyle with the waves as your soundtrack.",
+                price: 380,
+                images: [
+                    "https://enzostvs-cached-generation.hf.space/generate/beach-bungalow-with-ocean-access-and-coastal-decor?format=landscape-16_9"
+                ],
+                available: true
+            },
+            6: {
+                name: "Executive Business Room",
+                description: "Tailored for business travelers, our Executive Business Room features a dedicated workspace with ergonomic chair, high-speed Wi-Fi, printer access, and 24/7 coffee service. Express check-in/out ensures you make the most of your valuable time.",
+                price: 295,
+                images: [
+                    "https://enzostvs-cached-generation.hf.space/generate/modern-executive-business-hotel-room-with-workstation?format=landscape-16_9"
+                ],
+                available: true
+            }
+        };
+
+        // Get room ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const roomId = urlParams.get('id') || 1;
+        const room = rooms[roomId] || rooms[1];
+
+        // Update page content
+        document.getElementById('roomName').textContent = room.name;
+        document.getElementById('breadcrumbRoomName').textContent = room.name;
+        document.getElementById('roomDescription').textContent = room.description;
+        document.getElementById('roomPrice').textContent = '$' + room.price;
+        document.getElementById('mainImage').src = room.images[0];
+        
+        if (!room.available) {
+            document.getElementById('availabilityBadge').textContent = 'Unavailable';
+            document.getElementById('availabilityBadge').className = 'absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-full font-medium';
+            document.getElementById('bookButton').disabled = true;
+            document.getElementById('bookButton').textContent = 'Currently Unavailable';
+            document.getElementById('bookButton').className = 'btn-primary w-full py-4 text-lg opacity-50 cursor-not-allowed';
+        }
+
+        // Thumbnail click handler
+        document.querySelectorAll('.thumbnail').forEach((thumb, index) => {
+            thumb.addEventListener('click', function() {
+                document.getElementById('mainImage').src = this.src.replace('square', 'landscape-16_9');
+                document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('border-accent'));
+                this.classList.add('border-accent');
+            });
+        });
+
+        // Set minimum date to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('checkinDate').setAttribute('min', today);
+        document.getElementById('checkinDate').value = today;
+        
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 2);
+        document.getElementById('checkoutDate').setAttribute('min', tomorrow.toISOString().split('T')[0]);
+        document.getElementById('checkoutDate').value = tomorrow.toISOString().split('T')[0];
+
+        // Calculate price
+        function calculatePrice() {
+            const checkin = new Date(document.getElementById('checkinDate').value);
+            const checkout = new Date(document.getElementById('checkoutDate').value);
+            const nights = Math.ceil((checkout - checkin) / (1000 * 60 * 60 * 24));
+            
+            if (nights > 0) {
+                const subtotal = room.price * nights;
+                const taxes = Math.round(subtotal * 0.1);
+                const total = subtotal + taxes;
+                
+                document.getElementById('nightsCount').textContent = nights;
+                document.getElementById('subtotal').textContent = '$' + subtotal;
+                document.getElementById('taxes').textContent = '$' + taxes;
+                document.getElementById('total').textContent = '$' + total;
+            }
+        }
+
+        document.getElementById('checkinDate').addEventListener('change', function() {
+            const checkin = new Date(this.value);
+            const minCheckout = new Date(checkin);
+            minCheckout.setDate(minCheckout.getDate() + 1);
+            document.getElementById('checkoutDate').setAttribute('min', minCheckout.toISOString().split('T')[0]);
+            calculatePrice();
+        });
+
+        document.getElementById('checkoutDate').addEventListener('change', calculatePrice);
+
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            window.location.href = `booking-confirmation.html?room=${roomId}&checkin=${document.getElementById('checkinDate').value}&checkout=${document.getElementById('checkoutDate').value}&guests=${document.getElementById('guests').value}`;
+        });
+    </script>
+</body>
+</html>
